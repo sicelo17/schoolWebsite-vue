@@ -1,12 +1,12 @@
 from django.db import models
 
-class Category(models.Models):
+class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()  #address version of the name
     
     #ordering  categories by name in the backend
     class Meta:
-        ordering = ('name')
+        ordering = ('name',)
         
     
     def __str__(self):
