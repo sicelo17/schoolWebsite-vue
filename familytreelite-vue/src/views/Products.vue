@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     getProduct() {
-      const category_slug = this.$route.params.category_slug;
+      const category_slug = this.$route.params.category_slug;       //getting category slug from current url
       const product_slug = this.$route.params.product_slug;
 
       axios
