@@ -47,7 +47,7 @@ export default {
   mounted() {
     this.getLatestProducts();
 
-    document.title = 'Home | Djackets'
+    document.title = 'Home | FamilyTreeLite'
   },
   methods: {
     async getLatestProducts() {
