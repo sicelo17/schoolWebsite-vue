@@ -32,6 +32,7 @@
 
 <script>
 import axios from "axios";
+import { toast } from 'bulma-toast';
 
 export default {
   name: "Product",
@@ -46,7 +47,7 @@ export default {
   },
   methods: {
     getProduct() {
-      const category_slug = this.$route.params.category_slug;       //getting category slug from current url
+      const category_slug = this.$route.params.category_slug; //getting category slug from current url
       const product_slug = this.$route.params.product_slug;
 
       axios
@@ -59,17 +60,26 @@ export default {
         });
     },
     addToCart() {
-            if (isNaN(this.quantity) || this.quantity < 1) {
-                this.quantity = 1
-            }
-            const item = {
-                product: this.product,
-                quantity: this.quantity
-            }
-            this.$store.commit('addToCart', item)
+      if (isNaN(this.quantity) || this.quantity < 1) {
+        this.quantity = 1;
+      }
+      const item = {
+        product: this.product,
+        quantity: this.quantity,
+      };
+      this.$store.commit("addToCart", item);
+
+      toast({
+        message: "The product was added to the cart",
+        type: "is-success",
+        dismissible: true,
+        pauseOnHover: true,
+        duration: 2000,
+        position: "bottom-right",
+      });
+    },
   },
-}
-} 
+};
 </script>
 
 <style>
