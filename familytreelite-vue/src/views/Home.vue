@@ -48,16 +48,18 @@ export default {
     this.getLatestProducts();
   },
   methods: {
-    getLatestProducts() {
-      axios
-        .get("/api/v1/latest-products/")
-        .then((response) => {
-          this.latestProducts = response.data;
+    async getLatestProducts() {
+      this.$store.commit('setIsLoading', true)
+      await axios
+        .get('/api/v1/latest-products/')
+        .then(response => {
+          this.latestProducts = response.data
         })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+        .catch(error => {
+          console.log(error)
+        })
+      this.$store.commit('setIsLoading', false)
+    }
   },
 };
 </script>
