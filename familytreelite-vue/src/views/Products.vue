@@ -32,7 +32,7 @@
 
 <script>
 import axios from "axios";
-import { toast } from 'bulma-toast';
+import { toast } from "bulma-toast";
 
 export default {
   name: "Product",
@@ -46,18 +46,21 @@ export default {
     this.getProduct();
   },
   methods: {
-    getProduct() {
-      const category_slug = this.$route.params.category_slug; //getting category slug from current url
+    async getProduct() {
+      this.$store.commit("setIsLoading", true);
+      const category_slug = this.$route.params.category_slug;
       const product_slug = this.$route.params.product_slug;
-
-      axios
+      await axios
         .get(`/api/v1/products/${category_slug}/${product_slug}`)
         .then((response) => {
           this.product = response.data;
+          document.title = this.product.name + " | Djackets";
         })
         .catch((error) => {
           console.log(error);
         });
+
+      this.$store.commit("setIsLoading", false);
     },
     addToCart() {
       if (isNaN(this.quantity) || this.quantity < 1) {
