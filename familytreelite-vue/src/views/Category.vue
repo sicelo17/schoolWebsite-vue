@@ -18,7 +18,6 @@
 import axios from "axios";
 import { toast } from "bulma-toast";
 import ProductBox from "@/components/ProductBox";
-
 export default {
   name: "Category",
   components: {
@@ -33,6 +32,13 @@ export default {
   },
   mounted() {
     this.getCategory();
+  },
+  watch: {
+    $route(to, from) {
+      if (to.name === "Category") {
+        this.getCategory();
+      }
+    },
   },
   methods: {
     async getCategory() {
