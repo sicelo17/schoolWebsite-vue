@@ -25,6 +25,6 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "name",
-            "get_absolute_url ",
-            "products "
+            "get_absolute_url",
+            "products",
         )
