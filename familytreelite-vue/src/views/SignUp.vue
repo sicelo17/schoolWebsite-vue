@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="field">
-                        <label>Repeat password</label>
+                        <label>Confirm Password</label>
                         <div class="control">
                             <input type="password" class="input" v-model="password2">
                         </div>
