@@ -53,6 +53,11 @@ const routes = [
     component: Cart
   },
   {
+    path: '/cart/success',
+    name: 'Success',
+    component: Success
+  },
+  {
     path: '/cart/checkout',
     name: 'Checkout',
     component: Checkout,
