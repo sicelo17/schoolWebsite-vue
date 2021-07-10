@@ -58,6 +58,9 @@ export default {
             errors: []
         }
     },
+    mounted() {
+        document.title = 'SignUp | FamilyTreeLite'
+    },
     methods: {
         submitForm() {
             this.errors = []
