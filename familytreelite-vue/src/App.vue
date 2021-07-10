@@ -2,29 +2,46 @@
   <div id="wrapper">
     <nav class="navbar is-dark">
       <div class="navbar-brand">
-        <router-link to="/" class="navbar-item"><strong>FamilyTreeLite</strong></router-link>
+        <router-link to="/" class="navbar-item"
+          ><strong>FamilyTreeLite</strong></router-link
+        >
 
-        <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
+        <a
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbar-menu"
+          @click="showMobileMenu = !showMobileMenu"
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
 
-      <div class="navbar-menu" id="navbar-menu" :class="{'is-active': showMobileMenu}">
+      <div
+        class="navbar-menu"
+        id="navbar-menu"
+        :class="{ 'is-active': showMobileMenu }"
+      >
         <div class="navbar-start">
           <div class="navbar-item">
             <form method="get" action="/search">
               <div class="field has-addons">
                 <div class="control">
-                  <input type="text" class="input" placeholder="What are you looking for?" name="query">
+                  <input
+                    type="text"
+                    class="input"
+                    placeholder="What are you looking for?"
+                    name="query"
+                  />
                 </div>
 
                 <div class="control">
                   <button class="button is-success">
-                      <span class="icon">
+                    <span class="icon">
                       <i class="fas fa-search"></i>
-                      </span>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -37,60 +54,72 @@
 
           <div class="navbar-item">
             <div class="buttons">
-              <router-link to="/log-in" class="button is-light">Log in</router-link>
+              <template v-if="$store.state.isAuthenticated">
+                <router-link to="/my-account" class="button is-light"
+                  >My account</router-link
+                >
+              </template>
+
+              <template v-else>
+                <router-link to="/log-in" class="button is-light"
+                  >Log in</router-link
+                >
+              </template>
               <router-link to="/cart" class="button is-success">
-              <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-              <span>Cart ({{ cartTotalLength }})</span>
+                <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+                <span>Cart ({{ cartTotalLength }})</span>
               </router-link>
             </div>
           </div>
         </div>
       </div>
     </nav>
-    <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
+    <div
+      class="is-loading-bar has-text-centered"
+      v-bind:class="{ 'is-loading': $store.state.isLoading }"
+    >
       <div class="lds-dual-ring"></div>
     </div>
     <section class="section">
-      <router-view/>
+      <router-view />
     </section>
 
     <footer class="footer">
       <p class="has-text-centered">Copyright &copy; 2021</p>
     </footer>
- 
   </div>
 </template>
 
 <script>
 export default {
-  data(){
+  data() {
     return {
       showMobileMenu: false,
       cart: {
-        items: []
-      }
-    }
+        items: [],
+      },
+    };
   },
   beforeCreate() {
-    this.$store.commit('initializeStore')
+    this.$store.commit("initializeStore");
   },
   mounted() {
-    this.cart = this.$store.state.cart
+    this.cart = this.$store.state.cart;
   },
   computed: {
-      cartTotalLength() {
-          let totalLength = 0
-          for (let i = 0; i < this.cart.items.length; i++) {
-              totalLength += this.cart.items[i].quantity
-          }
-          return totalLength
+    cartTotalLength() {
+      let totalLength = 0;
+      for (let i = 0; i < this.cart.items.length; i++) {
+        totalLength += this.cart.items[i].quantity;
       }
-  }
-}
+      return totalLength;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-@import '../node_modules/bulma';
+@import "../node_modules/bulma";
 
 .lds-dual-ring {
   display: inline-block;
