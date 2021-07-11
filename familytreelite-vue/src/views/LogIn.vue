@@ -50,7 +50,7 @@ export default {
         }
     },
     mounted() {
-        document.title = 'Log In | FamilyTreeLite'
+        document.title = 'Log In | Djackets'
     },
     methods: {
         async submitForm() {
