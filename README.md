@@ -1,2 +1,2 @@
-- Use pip to install django, django-rest-framework, pillow, djoser
+- Use pip to install django, django-rest-framework, pillow, djoser, django-cors-headers
 - Create superuser (Name: admin, password: admin123, email: admin@familytree.com)
