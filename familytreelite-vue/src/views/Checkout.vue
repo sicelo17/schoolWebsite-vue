@@ -141,7 +141,7 @@ export default {
         document.title = 'Checkout | FamilyTreeLite'
         this.cart = this.$store.state.cart
         if (this.cartTotalLength > 0) {
-            this.stripe = Stripe('pk_test_51H1HiuKBJV2qfWbD2gQe6aqanfw6Eyul5PO2KeOuSRlUMuaV4TxEtaQyzr9DbLITSZweL7XjK3p74swcGYrE2qEX00Hz7GmhMI')
+            this.stripe = Stripe('pk_test_51KYJEdAWKRDcLMspkHS9ooXLp0oKBuNSUTgpMEtLwai4QyeV15LZXs38iIIuaOZW6sUYiAgxRUGDqcJqe4glwHnt002g1tRusY')
             const elements = this.stripe.elements();
             this.card = elements.create('card', { hidePostalCode: true })
             this.card.mount('#card-element')
